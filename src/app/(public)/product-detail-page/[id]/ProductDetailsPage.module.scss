@@ -1,0 +1,27 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
+@use '@styles/functions' as f;
+
+.productDetail {
+  @include container-asymmetric;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include adaptive-margin-vertical(60, 160);
+
+  .productBody {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+  }
+}
+
+.loaderWrapper {
+  @include container-layout;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+}

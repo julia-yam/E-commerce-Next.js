@@ -1,0 +1,15 @@
+@use '@styles/variables' as *;
+
+.notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $space-m;
+
+  min-height: 80vh;
+
+  .button {
+    text-decoration: none;
+  }
+}

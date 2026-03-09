@@ -1,0 +1,55 @@
+@use '@styles/variables' as *;
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: $border-radius;
+  gap: $space-xxs;
+  padding: $space-s $space-l;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &.primary {
+    color: $button-primary-text;
+    background-color: $button-primary-bg;
+    border: none;
+
+    &:hover:not(.disabled) {
+      background-color: $button-primary-bg-hover;
+    }
+
+    &.disabled {
+      background-color: $button-primary-bg-disabled;
+    }
+
+    .loader {
+      color: $button-primary-text;
+    }
+  }
+
+  &.transparent {
+    background-color: transparent;
+    color: $text-primary;
+    border: 1px solid $text-secondary;
+
+    &:hover:not(.disabled) {
+      background-color: $line-color;
+    }
+
+    &.disabled {
+      border-color: $button-primary-bg-disabled;
+      color: $button-primary-bg-disabled;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &.loading {
+    pointer-events: none;
+  }
+}
