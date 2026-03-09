@@ -1,0 +1,15 @@
+@use '@styles/variables' as *;
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $space-m;
+
+  min-height: 100vh;
+
+  .retryButton {
+    text-decoration: none;
+  }
+}
