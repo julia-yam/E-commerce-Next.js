@@ -1,5 +1,5 @@
 ## Ссылки
-* **Production:** [https://<e-commerce>.vercel.app]([https://<твой-проект>.vercel.app](https://e-commerce-next-js-six-mu.vercel.app/))
+* **Production:** [https://e-commerce-next-js-six-mu.vercel.app/](https://e-commerce-next-js-six-mu.vercel.app/)
 * **Исходный репозиторий:** [https://github.com/julia-yam/E-commerce.git](https://github.com/julia-yam/E-commerce.git)
 
 ### Как запустить:
