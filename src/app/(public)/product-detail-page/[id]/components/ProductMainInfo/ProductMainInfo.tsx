@@ -38,6 +38,7 @@ export const ProductMainInfo = ({
             maxLines={2}
             tag="h1"
             view="title"
+            color="primary"
           >
             {product.title}
           </Text>
@@ -47,7 +48,12 @@ export const ProductMainInfo = ({
         </div>
 
         <div className={styles.priceWrapper}>
-          <Text weight="bold" className={styles.price} view="p-20">
+          <Text
+            weight="bold"
+            className={styles.price}
+            view="p-20"
+            color="primary"
+          >
             ${product.price}
           </Text>
         </div>

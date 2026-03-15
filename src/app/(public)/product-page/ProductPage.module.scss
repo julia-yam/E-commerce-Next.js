@@ -4,17 +4,17 @@
 
 $container-width: 1240px;
 
-.productPage {
+.product-page {
   width: 100%;
   overflow: visible;
 
-  .infoProduct {
+  .info-product {
     max-width: 653px;
     margin: f.rem(100) auto f.rem(50);
     min-height: auto;
   }
 
-  .searchProduct {
+  .search-product {
     @include container-layout;
     display: flex;
     flex-direction: column;
@@ -23,12 +23,12 @@ $container-width: 1240px;
       margin-bottom: f.rem(35);
     }
 
-    .listWrapper {
+    .list-wrapper {
       width: 100%;
     }
   }
 }
 
-.virtualizedList {
+.virtualized-list {
   outline: none;
 }

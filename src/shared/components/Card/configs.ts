@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export type CardProps = {
   className?: string;
@@ -15,26 +15,28 @@ export type CardProps = {
 
 export const CARD_TEXT_CONFIG = {
   caption: {
-    view: 'p-14' as const,
-    weight: 'normal' as const,
-    tag: 'p' as const,
-    color: 'secondary' as const,
+    view: "p-14" as const,
+    weight: "normal" as const,
+    tag: "p" as const,
+    color: "secondary" as const,
   },
   title: {
-    view: 'p-20' as const,
-    weight: 'medium' as const,
-    tag: 'h3' as const,
+    view: "p-20" as const,
+    weight: "medium" as const,
+    tag: "h3" as const,
+    color: "primary" as const,
     maxLines: 2,
   },
   subtitle: {
-    view: 'p-16' as const,
-    weight: 'normal' as const,
-    tag: 'p' as const,
-    color: 'secondary' as const,
+    view: "p-16" as const,
+    weight: "normal" as const,
+    tag: "p" as const,
+    color: "secondary" as const,
     maxLines: 3,
   },
   content: {
-    view: 'p-18' as const,
-    weight: 'bold' as const,
+    view: "p-18" as const,
+    weight: "bold" as const,
+    color: "primary" as const,
   },
 };

@@ -2,7 +2,7 @@
 @use '@styles/mixins' as *;
 @use '@styles/functions' as f;
 
-.relatedItems {
+.related-items {
   display: flex;
   flex-direction: column;
   gap: $space-l;
@@ -13,7 +13,7 @@
     flex-direction: column;
     gap: $space-l;
 
-    .relatedItemsGrid {
+    .related-items-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: $space-l;

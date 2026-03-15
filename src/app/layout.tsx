@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
+import { ThemeProvider } from "./providers"; // НЕ ЗАБУДЬТЕ ЭТОТ ИМПОРТ
 import QueryProvider from "@/providers/QueryProvider";
 import { StoreProvider } from "@/providers/StoreProvider";
 import { roboto } from "@styles/Roboto/fonts";
@@ -28,11 +29,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={roboto.variable}>
+    <html lang="en" className={roboto.variable} suppressHydrationWarning>
       <body className={roboto.className}>
-        <QueryProvider>
-          <StoreProvider>{children}</StoreProvider>
-        </QueryProvider>
+        {/* Добавляем ThemeProvider обратно! */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <QueryProvider>
+            <StoreProvider>{children}</StoreProvider>
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

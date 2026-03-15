@@ -2,7 +2,7 @@
 @use '@styles/mixins' as *;
 @use '@styles/functions' as f;
 
-.productDetail {
+.product-detail {
   @include container-asymmetric;
 
   display: flex;
@@ -10,14 +10,14 @@
   justify-content: center;
   @include adaptive-margin-vertical(60, 160);
 
-  .productBody {
+  .product-body {
     display: flex;
     flex-direction: column;
     gap: $space-xl;
   }
 }
 
-.loaderWrapper {
+.loader-wrapper {
   @include container-layout;
   display: flex;
   justify-content: center;

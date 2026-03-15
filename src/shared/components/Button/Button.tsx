@@ -19,12 +19,15 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
+  const variantKey =
+    `button${variant.charAt(0).toUpperCase() + variant.slice(1)}` as keyof typeof styles;
+
   const classes = cn(
     styles.button,
-    styles[variant],
+    styles[variantKey],
     {
-      [styles.loading]: loading,
-      [styles.disabled]: disabled || loading,
+      [styles.buttonLoading]: loading,
+      [styles.buttonDisabled]: disabled || loading,
     },
     className,
   );
@@ -32,7 +35,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button {...props} disabled={loading || disabled} className={classes}>
       {loading && (
-        <Loader size={BUTTON_LOADER_SIZE} className={styles.loader} />
+        <Loader size={BUTTON_LOADER_SIZE} className={styles.buttonLoader} />
       )}
       <Text {...BUTTON_TEXT_CONFIG}>{children}</Text>
     </button>

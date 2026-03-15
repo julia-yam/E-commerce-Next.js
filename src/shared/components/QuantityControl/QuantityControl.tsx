@@ -22,7 +22,7 @@ const QuantityControl = observer(
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className={styles.controlBtn}
+          className={styles.quantityControlBtn}
           onClick={(e) => {
             e.stopPropagation();
             cartStore.changeQuantity(id, -1);
@@ -31,12 +31,17 @@ const QuantityControl = observer(
           −
         </button>
 
-        <Text tag="span" view="p-16" className={styles.value}>
+        <Text
+          tag="span"
+          view="p-16"
+          color="primary"
+          className={styles.quantityValue}
+        >
           {quantity}
         </Text>
 
         <button
-          className={styles.controlBtn}
+          className={styles.quantityControlBtn}
           onClick={(e) => {
             e.stopPropagation();
             cartStore.changeQuantity(id, 1);

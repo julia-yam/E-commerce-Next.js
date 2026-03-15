@@ -1,6 +1,6 @@
 @use '@styles/variables' as *;
 
-.backButton {
+.back-button {
   border: none;
   padding: 0;
   background-color: transparent;
@@ -9,11 +9,11 @@
   align-items: center;
   cursor: pointer;
 
-  .back {
+  &-back {
     transform: scaleX(-1);
   }
 
-  .text {
+  &-text {
     width: 85px;
     height: 48px;
     display: flex;

@@ -1,7 +1,7 @@
 @use '@styles/variables' as *;
 @use '@styles/mixins' as *;
 
-.inputWrapper {
+.input-wrapper {
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -15,7 +15,7 @@
   @include adaptive-font(14, 16);
   @include adaptive-lh(18, 20);
 
-  &Field {
+  &-field {
     flex: 1;
     height: 100%;
     border: none;
@@ -42,13 +42,13 @@
     border-color: $brand;
   }
 
-  &Disabled {
+  &-disabled {
     background-color: $input-bg-disabled;
     border-color: $input-border-disabled;
     cursor: not-allowed;
   }
 
-  &After {
+  &-after {
     display: flex;
     align-items: center;
     margin-left: $space-xxs;

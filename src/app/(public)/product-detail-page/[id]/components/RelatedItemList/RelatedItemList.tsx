@@ -26,7 +26,7 @@ export const RelatedItemList: React.FC<RelatedItemListProps> = observer(
       <section className={styles.relatedItems}>
         <div className={styles.container}>
           <div className={styles.relatedItemsTitle}>
-            <Text view="title" weight="bold">
+            <Text view="title" weight="bold" color="primary">
               Related Items
             </Text>
           </div>

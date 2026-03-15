@@ -1,7 +1,105 @@
+@use '@styles/variables' as *;
+
+:root {
+  --shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+
+  --brand: #518581;
+  --brand-hover: #86aaa7;
+  --brand-active: #487773;
+
+  --loader-bg: var(--brand);
+
+  --text-primary: #000000;
+  --text-secondary: #afadb5;
+  --text-accent: #518581;
+
+  --button-primary-text: #ffffff;
+  --button-primary-text-hover: #ffffff;
+  --button-primary-text-disabled: #ffffff;
+  --button-primary-text-active: #ffffff;
+  --button-primary-bg: var(--brand);
+  --button-primary-bg-hover: var(--brand-hover);
+  --button-primary-bg-disabled: #d9d9d9;
+  --button-primary-bg-active: var(--brand-active);
+
+  --card-bg: #ffffff;
+  --card-image-bg: #d9d9d9;
+
+  --input-text: #000000;
+  --input-text-focus: #000000;
+  --input-bg: #ffffff;
+  --input-placeholder: #afadb5;
+  --input-border: #ffffff;
+  --input-bg-focus: #ffffff;
+  --input-border-focus: var(--brand);
+  --input-bg-disabled: #ffffff;
+  --input-border-disabled: #ffffff;
+  --input-text-disabled: rgba(0, 0, 0, 0.2);
+
+  --dropdown-options-bg: #ffffff;
+
+  --checkbox-bg: #ffffff;
+  --checkbox-border: #ffffff;
+  --checkbox-border-hover: var(--brand);
+  --checkbox-bg-disabled: rgba(255, 255, 255, 0.5);
+  --checkbox-border-disabled: rgba(255, 255, 255, 0);
+  --checkbox-check-disabled: rgba(0, 0, 0, 0.2);
+
+  --screen-color: #ffffff;
+  --line-color: #f3f3f3;
+}
+
+.dark {
+  --shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6);
+
+  --brand: #518581;
+  --brand-hover: #86aaa7;
+  --brand-active: #487773;
+
+  --loader-bg: var(--brand);
+
+  --text-primary: #ffffff;
+  --text-secondary: #afadb5;
+  --text-accent: #518581;
+
+  --button-primary-bg-disabled: #3f3f46;
+
+  --card-bg: #1e1e1e;
+  --card-image-bg: #27272a;
+
+  --input-text: #e4e4e7;
+  --input-text-focus: #ffffff;
+  --input-bg: #18181b;
+  --input-placeholder: #71717a;
+  --input-border: #27272a;
+  --input-bg-focus: #18181b;
+  --input-border-focus: var(--brand);
+  --input-bg-disabled: #18181b;
+  --input-border-disabled: #27272a;
+  --input-text-disabled: rgba(255, 255, 255, 0.2);
+
+  --dropdown-options-bg: #1e1e1e;
+
+  --checkbox-bg: #18181b;
+  --checkbox-border: #27272a;
+  --checkbox-border-hover: var(--brand);
+  --checkbox-bg-disabled: rgba(24, 24, 27, 0.5);
+  --checkbox-border-disabled: rgba(39, 39, 42, 0.5);
+  --checkbox-check-disabled: rgba(255, 255, 255, 0.2);
+
+  --screen-color: #212121;
+  --line-color: #27272a;
+}
+
 html, body {
   font-family: var(--font-roboto), sans-serif;
   margin: 0;
   padding: 0;
+
+  background-color: $screen--color;
+  color: $text-primary;
+
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
