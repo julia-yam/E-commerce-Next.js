@@ -36,14 +36,14 @@ const Search: React.FC<SearchProps> = ({
       <div className={styles.searchAndFilter}>
         <div className={styles.searchProduct}>
           <Input
-            className={styles.input}
+            className={styles.searchInput}
             value={localValue}
             onChange={(val: string) => setLocalValue(val)}
             onKeyDown={handleKeyDown}
             placeholder={TEXTS.placeholder}
           />
           <Button
-            className={styles.button}
+            className={styles.searchButton}
             type="button"
             onClick={handleSearch}
           >
@@ -51,7 +51,7 @@ const Search: React.FC<SearchProps> = ({
           </Button>
         </div>
 
-        <div className={styles.filter}>
+        <div className={styles.searchFilter}>
           <MultiDropdown
             options={options}
             value={selectedOptions}
@@ -61,12 +61,12 @@ const Search: React.FC<SearchProps> = ({
         </div>
       </div>
 
-      <div className={styles.total}>
-        <Text className={styles.textTotal} weight="bold">
+      <div className={styles.searchTotal}>
+        <Text className={styles.searchTextTotal} weight="bold" color="primary">
           {TEXTS.totalLabel}
         </Text>
         <Text
-          className={styles.number}
+          className={styles.searchNumber}
           view="p-20"
           color="accent"
           weight="bold"

@@ -2,16 +2,16 @@
 
 .icon {
   color: inherit;
-}
 
-.primary {
-  color: $text-primary;
-}
+  &-primary {
+    color: $text-primary;
+  }
 
-.secondary {
-  color: $text-secondary;
-}
+  &-secondary {
+    color: $text-secondary;
+  }
 
-.accent {
-  color: $brand;
+  &-accent {
+    color: $brand;
+  }
 }

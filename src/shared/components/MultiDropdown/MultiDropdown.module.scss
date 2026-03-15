@@ -1,11 +1,11 @@
 @use '@styles/variables' as *;
 @use '@styles/mixins' as *;
 
-.multiDropdown {
+.multi-dropdown {
   position: relative;
   width: 100%;
 
-  &Options {
+  &-options {
     background-color: $dropdown-options-bg;
     position: absolute;
     z-index: 10;
@@ -15,7 +15,7 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  &Item {
+  &-item {
     display: flex;
     align-items: center;
     padding: $space-s $space-xs;
@@ -25,7 +25,7 @@
       color: $text-secondary;
     }
 
-    &Selected {
+    &-selected {
       &,
       &:hover {
         color: $brand;
@@ -34,11 +34,11 @@
   }
 }
 
-.viewP16 {
+.view-p16 {
   @include adaptive-font(14, 16);
   @include adaptive-lh(18, 20);
 }
 
-.weightNormal {
+.weight-normal {
   font-weight: 400;
 }

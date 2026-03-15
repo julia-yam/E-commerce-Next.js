@@ -45,7 +45,7 @@ const CartPageClient = observer(() => {
         </BackButton>
       </div>
       <div className={styles.content}>
-        <Text tag="h1" view="title" className={styles.title}>
+        <Text tag="h1" view="title" color="primary" className={styles.title}>
           Cart
         </Text>
 

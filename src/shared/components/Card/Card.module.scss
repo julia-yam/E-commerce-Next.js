@@ -18,7 +18,7 @@
     cursor: pointer;
   }
 
-  &Header {
+  &-header {
     position: relative;
     display: flex;
     width: 100%;
@@ -28,20 +28,20 @@
     background-color: $card-image-bg;
   }
 
-  &Image {
+  &-image {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
   }
 
-  &Body {
+  &-body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     padding-top: $space-xl;
 
-    &Main {
+    &-main {
       display: flex;
       flex-direction: column;
       gap: $space-xxs;
@@ -49,7 +49,7 @@
     }
   }
 
-  &Footer {
+  &-footer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -60,7 +60,7 @@
     min-height: f.rem(52);
   }
 
-  &Action {
+  &-action {
     display: flex;
     align-items: center;
     justify-content: flex-end;

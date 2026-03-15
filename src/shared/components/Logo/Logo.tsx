@@ -1,13 +1,19 @@
-import React from 'react';
-import cn from 'classnames';
+import React from "react";
+import cn from "classnames";
+import { type LogoProps, LogoSvg } from "./configs";
+import styles from "./Logo.module.scss";
 
-import { type LogoProps, LogoSvg } from './configs';
+const Logo: React.FC<LogoProps> = ({ className, color = "primary" }) => {
+  const colorKey = `logo-${color}`;
 
-import styles from './Logo.module.scss';
+  const classes = cn(
+    styles.logo,
+    styles[colorKey as keyof typeof styles],
+    className,
+  );
 
-const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
-    <div className={cn(styles.logo, className)} data-testid="logo">
+    <div className={classes} data-testid="logo">
       <LogoSvg />
     </div>
   );

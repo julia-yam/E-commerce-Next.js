@@ -1,3 +1,5 @@
+import React from "react";
+import Image from "next/image";
 import { observer } from "mobx-react-lite";
 
 import cartStore from "@store/CartStore";
@@ -24,21 +26,30 @@ const CartItem = observer(({ item, onClick }: CartItemProps) => {
 
   return (
     <div className={styles.cartItem} onClick={onClick}>
-      <img src={product.image} alt={product.title} className={styles.image} />
+      <Image
+        src={product.image}
+        alt={product.title}
+        width={100}
+        height={100}
+        className={styles.cartItemImage}
+      />
 
-      <div className={styles.info}>
-        <Text tag="h3" view="p-18">
+      <div className={styles.cartItemInfo}>
+        <Text tag="h3" view="p-18" color="primary">
           {product.title}
         </Text>
         <Text tag="p" view="p-18" color="secondary">
           {product.category}
         </Text>
-        <Text tag="p" view="p-18" weight="bold">
+        <Text tag="p" view="p-18" weight="bold" color="primary">
           ${product.price}
         </Text>
       </div>
 
-      <div className={styles.controls} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={styles.cartItemControls}
+        onClick={(e) => e.stopPropagation()}
+      >
         <QuantityControl id={product.id} quantity={item.quantity} />
 
         <Button onClick={() => cartStore.removeFromCart(product.id)}>
