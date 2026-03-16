@@ -1,5 +1,17 @@
 import { type Option } from "@components/Search/configs";
 
+export interface StrapiProductFilters {
+  title?: { $containsi: string };
+  productCategory?: { documentId: { $in: string[] } };
+  price?: {
+    $gte?: number;
+    $lte?: number;
+  };
+  discountPercent?: { $gte: number };
+  rating?: { $gte: number };
+  isInStock?: { $eq: boolean };
+}
+
 export interface FormattedProduct {
   id: number;
   documentId: string;

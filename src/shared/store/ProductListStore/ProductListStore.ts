@@ -61,6 +61,7 @@ export default class ProductListStore implements ILocalStore {
       () => ({
         cats: this.filters.selectedCategories,
         query: this.filters.searchQuery,
+        adv: this.filters.advancedFilters,
       }),
       () => {
         void this.fetchData();
@@ -159,6 +160,7 @@ export default class ProductListStore implements ILocalStore {
           9,
           this.filters.searchQuery,
           this.filters.selectedCategories.map((c) => c.key),
+          this.filters.advancedFilters,
         ),
         this._categories.length
           ? Promise.resolve(this._categories)
@@ -187,6 +189,7 @@ export default class ProductListStore implements ILocalStore {
         9,
         this.filters.searchQuery,
         this.filters.selectedCategories.map((c) => c.key),
+        this.filters.advancedFilters,
       );
 
       this._appendProducts(items, total);

@@ -10,16 +10,22 @@ import {
 } from "./configs";
 import styles from "./MultiDropdown.module.scss";
 
-const MultiDropdown: React.FC<MultiDropdownProps> = ({
+type ExtendedProps = MultiDropdownProps & {
+  children?: React.ReactNode;
+};
+
+const MultiDropdown: React.FC<ExtendedProps> = ({
   className,
   options,
   value,
   onChange,
   disabled,
   getTitle,
+  children,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState("");
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,30 +69,67 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
     <div className={cn(styles.multiDropdown, className)} ref={rootRef}>
       <Input
         disabled={disabled}
-        placeholder={getTitle(value)}
+        placeholder={getTitle(value) || "Фильтры и категории"}
         value={displayValue}
-        onChange={(val: string) => setFilter(val)}
+        onChange={(val: string) => {
+          setFilter(val);
+          if (val) {
+            setIsCategoriesOpen(true);
+          }
+        }}
         onFocus={() => !disabled && setIsOpen(true)}
         onKeyDown={handleKeyDown}
         afterSlot={<ArrowDownIcon color="secondary" />}
       />
 
-      {isOpen && !disabled && filteredOptions.length > 0 && (
+      {isOpen && !disabled && (
         <div className={cn(styles.multiDropdownOptions, styles.viewP16)}>
-          {filteredOptions.map((option) => {
-            const isSelected = value.some((v) => v.key === option.key);
-            return (
+          {options.length > 0 && (
+            <div className={styles.categoriesAccordion}>
               <div
-                key={option.key}
-                className={cn(styles.multiDropdownItem, {
-                  [styles.multiDropdownItemSelected]: isSelected,
-                })}
-                onClick={() => handleOptionClick(option)}
+                className={styles.categoriesHeader}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsCategoriesOpen(!isCategoriesOpen);
+                }}
               >
-                {option.value}
+                <span className={styles.categoriesTitle}>Категории</span>
+                <ArrowDownIcon
+                  color="secondary"
+                  className={cn(styles.accordionIcon, {
+                    [styles.accordionIconOpen]: isCategoriesOpen,
+                  })}
+                />
               </div>
-            );
-          })}
+
+              {isCategoriesOpen && (
+                <div className={styles.optionsList}>
+                  {filteredOptions.length > 0 ? (
+                    filteredOptions.map((option) => {
+                      const isSelected = value.some(
+                        (v) => v.key === option.key,
+                      );
+                      return (
+                        <div
+                          key={option.key}
+                          className={cn(styles.multiDropdownItem, {
+                            [styles.multiDropdownItemSelected]: isSelected,
+                          })}
+                          onClick={() => handleOptionClick(option)}
+                        >
+                          {option.value}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className={styles.noResults}>Ничего не найдено</div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {children && <div className={styles.extraFilters}>{children}</div>}
         </div>
       )}
     </div>

@@ -103,6 +103,8 @@ const ProductPageClient = observer(
             searchQuery={store.filters.searchQuery}
             onSearchChange={(value) => store.filters.setSearchQuery(value)}
             totalCount={store.total}
+            advancedFilters={store.filters.advancedFilters}
+            onAdvancedFilterChange={store.filters.setAdvancedFilter}
             className={styles.search}
           />
           <div className={styles.listWrapper}>

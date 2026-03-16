@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import cn from "classnames";
 import { Button, Input, MultiDropdown, Text } from "@components/index";
 import { getDropdownTitle, type SearchProps, TEXTS } from "./configs";
 import styles from "./Search.module.scss";
@@ -13,6 +14,8 @@ const Search: React.FC<SearchProps> = ({
   searchQuery,
   onSearchChange,
   totalCount,
+  advancedFilters,
+  onAdvancedFilterChange,
 }) => {
   const [localValue, setLocalValue] = useState(searchQuery);
 
@@ -32,7 +35,7 @@ const Search: React.FC<SearchProps> = ({
   };
 
   return (
-    <div className={`${styles.search} ${className || ""}`}>
+    <div className={cn(styles.search, className)}>
       <div className={styles.searchAndFilter}>
         <div className={styles.searchProduct}>
           <Input
@@ -57,12 +60,59 @@ const Search: React.FC<SearchProps> = ({
             value={selectedOptions}
             onChange={onFilterChange}
             getTitle={getDropdownTitle}
-          />
+          >
+            <div className={styles.advancedFiltersGroup}>
+              <div className={styles.divider} />
+
+              <Text view="p-16" weight="bold">
+                Цена ($)
+              </Text>
+              <div className={styles.rangeInputs}>
+                <Input
+                  placeholder="От"
+                  value={advancedFilters?.priceMin || ""}
+                  onChange={(val) => onAdvancedFilterChange?.("priceMin", val)}
+                />
+                <Input
+                  placeholder="До"
+                  value={advancedFilters?.priceMax || ""}
+                  onChange={(val) => onAdvancedFilterChange?.("priceMax", val)}
+                />
+              </div>
+
+              <Text view="p-16" weight="bold">
+                Скидка (%)
+              </Text>
+              <Input
+                placeholder="Мин. скидка"
+                value={advancedFilters?.discountPercent || ""}
+                onChange={(val) =>
+                  onAdvancedFilterChange?.("discountPercent", val)
+                }
+              />
+
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  checked={advancedFilters?.isInStock || false}
+                  onChange={(e) =>
+                    onAdvancedFilterChange?.("isInStock", e.target.checked)
+                  }
+                />
+                <Text view="p-16">Только в наличии</Text>
+              </label>
+            </div>
+          </MultiDropdown>
         </div>
       </div>
 
       <div className={styles.searchTotal}>
-        <Text className={styles.searchTextTotal} weight="bold" color="primary">
+        <Text
+          className={styles.searchTextTotal}
+          view="title"
+          weight="bold"
+          color="primary"
+        >
           {TEXTS.totalLabel}
         </Text>
         <Text

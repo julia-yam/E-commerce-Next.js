@@ -6,14 +6,17 @@ import {
   type Option,
   type PagedResponse,
   type ProductAttributes,
+  type StrapiProductFilters,
   type StrapiResponse,
 } from "./types";
+
+import { type AdvancedFilters } from "@/shared/components/Search/configs";
 
 const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "";
 const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || "";
 
 if (!STRAPI_BASE_URL || !STRAPI_API_URL) {
-  console.error("🚨 Missing Environment Variables for Strapi!");
+  console.error("Missing Environment Variables for Strapi!");
 }
 
 interface StrapiItem<T = Record<string, unknown>> {
@@ -74,11 +77,38 @@ export const strapiService = {
     limit: number = 10,
     search: string = "",
     categoryIds: string[] = [],
+    advancedFilters?: AdvancedFilters,
   ): Promise<PagedResponse<FormattedProduct>> => {
-    const filters: Record<string, unknown> = {};
+    const filters: StrapiProductFilters = {};
+
     if (search) filters.title = { $containsi: search };
+
     if (categoryIds.length > 0) {
       filters.productCategory = { documentId: { $in: categoryIds } };
+    }
+
+    if (advancedFilters) {
+      if (advancedFilters.priceMin || advancedFilters.priceMax) {
+        filters.price = {};
+        if (advancedFilters.priceMin)
+          filters.price.$gte = Number(advancedFilters.priceMin);
+        if (advancedFilters.priceMax)
+          filters.price.$lte = Number(advancedFilters.priceMax);
+      }
+
+      if (advancedFilters.discountPercent) {
+        filters.discountPercent = {
+          $gte: Number(advancedFilters.discountPercent),
+        };
+      }
+
+      if (advancedFilters.rating) {
+        filters.rating = { $gte: Number(advancedFilters.rating) };
+      }
+
+      if (advancedFilters.isInStock) {
+        filters.isInStock = { $eq: true };
+      }
     }
 
     const query = qs.stringify(
