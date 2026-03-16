@@ -1,4 +1,11 @@
-import { action, computed, makeObservable, observable, reaction } from "mobx";
+import {
+  action,
+  computed,
+  makeObservable,
+  observable,
+  reaction,
+  runInAction,
+} from "mobx";
 
 import { strapiService } from "@/api/strapi";
 import { type FormattedProduct } from "@/api/types";
@@ -133,7 +140,10 @@ export default class ProductListStore implements ILocalStore {
     try {
       this._setLoading(true);
       if (!this._categories.length) {
-        this._categories = await strapiService.getCategories();
+        const categories = await strapiService.getCategories();
+        runInAction(() => {
+          this._categories = categories;
+        });
       }
       this.setFiltersFromQueryParams({ search, categories: categoryKeys });
 
@@ -151,7 +161,7 @@ export default class ProductListStore implements ILocalStore {
     }
   }
 
-  fetchData = action(async (): Promise<void> => {
+  fetchData = async (): Promise<void> => {
     this._setLoading(true);
     try {
       const [productsResponse, categoriesData] = await Promise.all([
@@ -177,7 +187,7 @@ export default class ProductListStore implements ILocalStore {
     } finally {
       this._setLoading(false);
     }
-  });
+  };
 
   async fetchNextPage() {
     if (this._isLoading || !this.hasMore) return;

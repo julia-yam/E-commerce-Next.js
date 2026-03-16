@@ -31,4 +31,13 @@
       }
     }
   }
+
+  .price-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .price-old {
+    text-decoration: line-through;
+  }
 }

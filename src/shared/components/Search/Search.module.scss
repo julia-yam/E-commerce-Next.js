@@ -77,20 +77,20 @@
         accent-color: $brand;
       }
     }
+  }
 
-    &-total {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: $space-m;
-    }
+  &-total {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $space-m;
+  }
 
-    &-text-total {
-      @include adaptive-font(24, 32);
-      @include adaptive-lh(28, 36);
-    }
+  &-text-total {
+    @include adaptive-font(24, 32);
+    @include adaptive-lh(28, 36);
+  }
 
-    &-number {
-    }
+  &-number {
   }
 }

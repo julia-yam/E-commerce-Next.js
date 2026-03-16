@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { observer } from "mobx-react-lite";
+import {observer} from "mobx-react-lite";
 
 import cartStore from "@store/CartStore";
-import { Button, QuantityControl, Text } from "@components/index";
+import {Button, QuantityControl, Text} from "@components/index";
 
 import styles from "./CartItem.module.scss";
 
@@ -11,10 +11,12 @@ interface CartItemProps {
   item: {
     product: {
       id: string | number;
+      documentId?: string; // Добавлено на всякий случай
       title: string;
       category: string;
       price: number;
       image: string;
+      discountPercent?: number; // <-- Добавлено для расчета скидки
     };
     quantity: number;
   };
@@ -23,6 +25,13 @@ interface CartItemProps {
 
 const CartItem = observer(({ item, onClick }: CartItemProps) => {
   const { product } = item;
+
+  const discount = product.discountPercent || 0;
+  const hasDiscount = discount > 0;
+
+  const discountedPrice = hasDiscount
+    ? Math.round(product.price * (1 - discount / 100))
+    : product.price;
 
   return (
     <div className={styles.cartItem} onClick={onClick}>
@@ -41,9 +50,28 @@ const CartItem = observer(({ item, onClick }: CartItemProps) => {
         <Text tag="p" view="p-18" color="secondary">
           {product.category}
         </Text>
-        <Text tag="p" view="p-18" weight="bold" color="primary">
-          ${product.price}
-        </Text>
+
+        <div className={styles.priceWrapper}>
+          {hasDiscount ? (
+            <>
+              <Text
+                tag="span"
+                view="p-14"
+                color="secondary"
+                className={styles.priceOld}
+              >
+                ${product.price}
+              </Text>
+              <Text tag="span" view="p-18" weight="bold" color="primary">
+                ${discountedPrice}
+              </Text>
+            </>
+          ) : (
+            <Text tag="p" view="p-18" weight="bold" color="primary">
+              ${product.price}
+            </Text>
+          )}
+        </div>
       </div>
 
       <div

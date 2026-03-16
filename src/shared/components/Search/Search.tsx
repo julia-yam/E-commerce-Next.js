@@ -2,7 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
-import { Button, Input, MultiDropdown, Text } from "@components/index";
+import {
+  Button,
+  CheckBox,
+  Input,
+  MultiDropdown,
+  Text,
+} from "@components/index";
 import { getDropdownTitle, type SearchProps, TEXTS } from "./configs";
 import styles from "./Search.module.scss";
 
@@ -65,26 +71,26 @@ const Search: React.FC<SearchProps> = ({
               <div className={styles.divider} />
 
               <Text view="p-16" weight="bold">
-                Цена ($)
+                Price
               </Text>
               <div className={styles.rangeInputs}>
                 <Input
-                  placeholder="От"
+                  placeholder="From"
                   value={advancedFilters?.priceMin || ""}
                   onChange={(val) => onAdvancedFilterChange?.("priceMin", val)}
                 />
                 <Input
-                  placeholder="До"
+                  placeholder="To"
                   value={advancedFilters?.priceMax || ""}
                   onChange={(val) => onAdvancedFilterChange?.("priceMax", val)}
                 />
               </div>
 
               <Text view="p-16" weight="bold">
-                Скидка (%)
+                Discount (%)
               </Text>
               <Input
-                placeholder="Мин. скидка"
+                placeholder="Min. discount"
                 value={advancedFilters?.discountPercent || ""}
                 onChange={(val) =>
                   onAdvancedFilterChange?.("discountPercent", val)
@@ -92,14 +98,13 @@ const Search: React.FC<SearchProps> = ({
               />
 
               <label className={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
+                <CheckBox
                   checked={advancedFilters?.isInStock || false}
-                  onChange={(e) =>
-                    onAdvancedFilterChange?.("isInStock", e.target.checked)
+                  onChange={(checked: boolean) =>
+                    onAdvancedFilterChange?.("isInStock", checked)
                   }
                 />
-                <Text view="p-16">Только в наличии</Text>
+                <Text view="p-16">In stock</Text>
               </label>
             </div>
           </MultiDropdown>

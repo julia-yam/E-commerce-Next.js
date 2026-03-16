@@ -1,0 +1,60 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as *;
+
+.categories-page {
+  @include container-layout;
+  padding: $space-xl;
+
+  @include respond-down("tablet") {
+    padding-bottom: calc($space-xl + $space-xl);
+  }
+}
+
+.page-title {
+  margin-bottom: $space-l;
+  text-align: center;
+}
+
+.categories-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $space-l;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 250px;
+  overflow: hidden;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: $shadow;
+  }
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  overflow: hidden;
+
+  .image {
+    object-fit: cover;
+  }
+
+  .placeholder {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.category-info {
+  padding: $space-m;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-xs;
+}

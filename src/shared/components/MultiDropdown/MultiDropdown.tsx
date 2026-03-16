@@ -59,6 +59,12 @@ const MultiDropdown: React.FC<ExtendedProps> = ({
     }
   };
 
+  const handleToggle = () => {
+    if (!disabled) {
+      setIsOpen((prev) => !prev);
+    }
+  };
+
   const displayValue = isOpen
     ? filter
     : value.length > 0
@@ -69,7 +75,7 @@ const MultiDropdown: React.FC<ExtendedProps> = ({
     <div className={cn(styles.multiDropdown, className)} ref={rootRef}>
       <Input
         disabled={disabled}
-        placeholder={getTitle(value) || "Фильтры и категории"}
+        placeholder={getTitle(value) || "Filter"}
         value={displayValue}
         onChange={(val: string) => {
           setFilter(val);
@@ -77,13 +83,16 @@ const MultiDropdown: React.FC<ExtendedProps> = ({
             setIsCategoriesOpen(true);
           }
         }}
-        onFocus={() => !disabled && setIsOpen(true)}
+        onClick={handleToggle}
         onKeyDown={handleKeyDown}
         afterSlot={<ArrowDownIcon color="secondary" />}
       />
 
       {isOpen && !disabled && (
-        <div className={cn(styles.multiDropdownOptions, styles.viewP16)}>
+        <div
+          className={cn(styles.multiDropdownOptions, styles.viewP16)}
+          onClick={(e) => e.stopPropagation()}
+        >
           {options.length > 0 && (
             <div className={styles.categoriesAccordion}>
               <div
@@ -93,7 +102,7 @@ const MultiDropdown: React.FC<ExtendedProps> = ({
                   setIsCategoriesOpen(!isCategoriesOpen);
                 }}
               >
-                <span className={styles.categoriesTitle}>Категории</span>
+                <span className={styles.categoriesTitle}>Categories</span>
                 <ArrowDownIcon
                   color="secondary"
                   className={cn(styles.accordionIcon, {

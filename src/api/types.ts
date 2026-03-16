@@ -21,6 +21,7 @@ export interface FormattedProduct {
   category: string;
   description: string;
   isInStock: boolean;
+  discountPercent?: number;
 }
 
 export interface PagedResponse<T> {
@@ -51,6 +52,7 @@ export interface ProductAttributes {
   isInStock: boolean;
   images: unknown;
   productCategory: unknown;
+  discountPercent?: number;
 }
 
 export { type Option };

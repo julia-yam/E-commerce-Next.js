@@ -1,18 +1,32 @@
 @use '@styles/variables' as *;
 @use '@styles/functions' as f;
+@use '@styles/mixins' as *;
 
 .cart-item {
   display: flex;
-  gap: $space-m;
-  padding: $space-m;
-  border-bottom: 1px solid $line-color;
+  @include adaptive-gap(24, 12);
+  padding-bottom: $space-s;
+  border-bottom: 2px solid $line-color;
   cursor: pointer;
   align-items: center;
+
+  @include respond-down("mobile") {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: $space-s;
+    border: 2px solid $line-color;
+  }
 
   &-image {
     object-fit: cover;
     border-radius: $border-radius;
     flex-shrink: 0;
+
+    @include respond-down("mobile") {
+      align-self: center;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-info {
@@ -24,8 +38,25 @@
 
   &-controls {
     display: flex;
-    flex-direction: column;
     align-items: flex-end;
-    gap: $space-s;
+    @include adaptive-gap(24, 12);
+
+    @include respond-down("mobile") {
+      width: 100%;
+      justify-content: space-between;
+      margin-top: $space-s;
+      padding-top: $space-s;
+      border-top: 2px solid $line-color;
+    }
+  }
+
+  .price-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .price-old {
+    text-decoration: line-through;
   }
 }
+
