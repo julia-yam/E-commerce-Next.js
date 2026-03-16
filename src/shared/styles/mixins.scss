@@ -11,13 +11,15 @@ $breakpoints: (
 );
 
 @function fluid-calc($min, $max) {
-  $range: math.div(100vw - 320px, 1440 - 320);
-  @return calc(#{$min}px + (#{$max} - #{$min}) * (#{$range}));
+  @return calc(#{$min}px + (#{$max} - #{$min}) * (100vw - 320px) / (1440 - 320));
 }
 
 @mixin _adaptive-value($property, $min, $max) {
-  $range: math.div(100vw - 320px, 1440 - 320);
-  #{$property}: clamp(#{$min}px, calc(#{$min}px + (#{$max} - #{$min}) * (#{$range})), #{$max}px);
+  #{$property}: clamp(
+          #{$min}px,
+          calc(#{$min}px + (#{$max} - #{$min}) * (100vw - 320px) / (1440 - 320)),
+          #{$max}px
+  );
 }
 
 @mixin adaptive-font($min-size, $max-size) {
