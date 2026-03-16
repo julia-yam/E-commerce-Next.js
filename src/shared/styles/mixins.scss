@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:math";
 @use '@styles/functions' as f;
 @use '@styles/variables' as *;
 
@@ -10,11 +11,13 @@ $breakpoints: (
 );
 
 @function fluid-calc($min, $max) {
-  @return calc(#{$min}px + (#{$max} - #{$min}) * ((100vw - 320px) / (1440 - 320)));
+  $range: math.div(100vw - 320px, 1440 - 320);
+  @return calc(#{$min}px + (#{$max} - #{$min}) * (#{$range}));
 }
 
 @mixin _adaptive-value($property, $min, $max) {
-  #{$property}: clamp(#{$min}px, calc(#{$min}px + (#{$max} - #{$min}) * ((100vw - 320px) / (1440 - 320))), #{$max}px);
+  $range: math.div(100vw - 320px, 1440 - 320);
+  #{$property}: clamp(#{$min}px, calc(#{$min}px + (#{$max} - #{$min}) * (#{$range})), #{$max}px);
 }
 
 @mixin adaptive-font($min-size, $max-size) {
@@ -26,8 +29,8 @@ $breakpoints: (
 }
 
 @mixin respond-down($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    $value: map-get($breakpoints, $breakpoint);
+  @if map.has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
 
     @media (max-width: ($value - 0.02px)) {
       @content;
