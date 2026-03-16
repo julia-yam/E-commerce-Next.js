@@ -14,7 +14,7 @@ $breakpoints: (
   @return calc(#{$min}px + (#{$max} - #{$min}) * (100vw - 320px) / (1440 - 320));
 }
 
-@mixin _adaptive-value($property, $min, $max) {
+@mixin adaptive-value($property, $min, $max) {
   #{$property}: clamp(
           #{$min}px,
           calc(#{$min}px + (#{$max} - #{$min}) * (100vw - 320px) / (1440 - 320)),
@@ -23,11 +23,11 @@ $breakpoints: (
 }
 
 @mixin adaptive-font($min-size, $max-size) {
-  @include _adaptive-value(font-size, $min-size, $max-size);
+  @include adaptive-value(font-size, $min-size, $max-size);
 }
 
 @mixin adaptive-lh($min-lh, $max-lh) {
-  @include _adaptive-value(line-height, $min-lh, $max-lh);
+  @include adaptive-value(line-height, $min-lh, $max-lh);
 }
 
 @mixin respond-down($breakpoint) {
