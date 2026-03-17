@@ -9,7 +9,7 @@ const SunIcon: React.FC<IconProps> = (props) => (
       cy="12"
       r="4"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       fill="none"
     />
     <path

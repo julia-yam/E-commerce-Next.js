@@ -7,8 +7,8 @@ import {
   runInAction,
 } from "mobx";
 
-import { strapiService } from "@/api/strapi";
-import { type FormattedProduct } from "@/api/types";
+import { strapiService } from "@/app/api/strapi";
+import { type FormattedProduct } from "@/app/api/types";
 import { type Option } from "@/shared/components/Search/configs";
 import FilterStore from "@/shared/store/FilterStore";
 

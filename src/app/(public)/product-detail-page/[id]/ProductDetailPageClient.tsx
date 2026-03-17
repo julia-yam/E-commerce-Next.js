@@ -1,17 +1,17 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
-import {observer} from "mobx-react-lite";
-import {useRouter} from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { useRouter } from "next/navigation";
 
-import {type FormattedProduct} from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 import cartStore from "@store/CartStore";
 import ProductDetailsStore from "@store/ProductDetailsStore";
-import {BackButton, Button, Loader, Text} from "@components/index";
-import {useCartActions} from "@store/hooks/useCartActions";
+import { BackButton, Button, Loader, Text } from "@components/index";
+import { useCartActions } from "@store/hooks/useCartActions";
 
-import {RelatedItemList} from "./components/RelatedItemList";
-import {ProductMainInfo} from "./components/ProductMainInfo";
+import { RelatedItemList } from "./components/RelatedItemList";
+import { ProductMainInfo } from "./components/ProductMainInfo";
 import styles from "./ProductDetailsPage.module.scss";
 
 interface Props {

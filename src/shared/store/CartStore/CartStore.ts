@@ -1,6 +1,6 @@
 import { makeAutoObservable, toJS } from "mobx";
 
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 
 interface CartItem {
   product: FormattedProduct;
@@ -50,6 +50,11 @@ class CartStore {
     }
   }
 
+  clearCart() {
+    this.items = [];
+    this.saveToStorage();
+  }
+
   private saveToStorage() {
     try {
       localStorage.setItem("guest_cart", JSON.stringify(toJS(this.items)));
@@ -69,13 +74,6 @@ class CartStore {
         }
       }
     }
-  }
-
-  get totalPrice() {
-    return this.items.reduce((sum, item) => {
-      const price = item.product.price;
-      return sum + price * item.quantity;
-    }, 0);
   }
 }
 

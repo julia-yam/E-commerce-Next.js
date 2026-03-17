@@ -6,7 +6,6 @@ export type NavItem = {
 export const NAV_ITEMS: NavItem[] = [
   { label: "Products", href: "/" },
   { label: "Categories", href: "/categories-page" },
-  { label: "About us", href: "/product-page" },
 ];
 
 export const ACTION_ICONS_CONFIG = {

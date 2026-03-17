@@ -1,7 +1,7 @@
 import type { IReactionDisposer } from "mobx";
 import { action, computed, makeObservable, observable, reaction } from "mobx";
 
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 import { type Option } from "@components/Search/configs";
 import ProductListStore from "@store/ProductListStore";
 

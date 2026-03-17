@@ -1,3 +1,7 @@
+"use client";
+
+import {useEffect, useState} from "react";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {observer} from "mobx-react-lite";
 
 import cartStore from "@store/CartStore";
@@ -6,6 +10,22 @@ import {Button, Text} from "@components/index";
 import styles from "./CartSummary.module.scss";
 
 const CartSummary = observer(() => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (searchParams.get("success") === "true") {
+      if (typeof cartStore.clearCart === "function") {
+        cartStore.clearCart();
+      }
+
+      router.replace(pathname);
+    }
+  }, [searchParams, router, pathname]);
+
   let totalOriginalPrice = 0;
   let totalDiscountedPrice = 0;
 
@@ -22,6 +42,46 @@ const CartSummary = observer(() => {
 
   const totalSavings = totalOriginalPrice - totalDiscountedPrice;
   const hasSavings = totalSavings > 0;
+
+  const handleCheckout = async () => {
+    if (cartStore.items.length === 0) return;
+
+    setIsLoading(true);
+    try {
+      const checkoutItems = cartStore.items.map(({ product, quantity }) => {
+        const discount = product.discountPercent || 0;
+        const discountedPrice =
+          discount > 0
+            ? Math.round(product.price * (1 - discount / 100))
+            : product.price;
+
+        return {
+          name: product.title,
+          price: discountedPrice,
+          quantity: quantity,
+          image: product.image,
+        };
+      });
+
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: checkoutItems }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error("Stripe error:", data.error);
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <aside className={styles.summary}>
@@ -115,7 +175,13 @@ const CartSummary = observer(() => {
         </Text>
       </div>
 
-      <Button className={styles.checkoutBtn}>Place an order</Button>
+      <Button
+        className={styles.checkoutBtn}
+        onClick={handleCheckout}
+        disabled={isLoading || cartStore.items.length === 0}
+      >
+        {isLoading ? "Redirecting..." : "Place an order"}
+      </Button>
     </aside>
   );
 });

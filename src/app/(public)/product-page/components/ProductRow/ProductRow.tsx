@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { Card, ProductAction, Text } from "@components/index";
 import { type ProductRowProps, ROUTES } from "./configs";
-import { type FormattedProduct } from "@/api/types";
+import { type FormattedProduct } from "@/app/api/types";
 
 import styles from "./ProductRow.module.scss";
 

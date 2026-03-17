@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import cartStore from "@store/CartStore";
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 
 export const useCartActions = () => {
   const handleAddToCart = useCallback(

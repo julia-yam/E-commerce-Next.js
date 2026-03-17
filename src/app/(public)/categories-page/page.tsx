@@ -1,5 +1,5 @@
 import React from "react";
-import {strapiService} from "@/api/strapi";
+import { strapiService } from "@/app/api/strapi";
 import CategoriesClient from "./CategoriesPageClient";
 
 export const revalidate = 3600;

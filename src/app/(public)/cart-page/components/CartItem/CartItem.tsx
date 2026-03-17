@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 
 import cartStore from "@store/CartStore";
-import {Button, QuantityControl, Text} from "@components/index";
+import { Button, QuantityControl, Text } from "@components/index";
 
 import styles from "./CartItem.module.scss";
 

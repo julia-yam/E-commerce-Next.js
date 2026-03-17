@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ProductPageClient from "./ProductPageClient";
-import { strapiService } from "@/api/strapi";
+import { strapiService } from "@/app/api/strapi";
 
 export const revalidate = 60;
 

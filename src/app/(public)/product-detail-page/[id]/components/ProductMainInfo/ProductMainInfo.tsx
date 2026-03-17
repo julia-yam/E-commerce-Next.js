@@ -1,6 +1,6 @@
 import React from "react";
 import NextImage from "next/image";
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 import { Button, ProductAction, Text } from "@components/index";
 import styles from "./ProductMainInfo.module.scss";
 

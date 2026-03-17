@@ -1,15 +1,15 @@
 "use client";
 
-import {useCallback, useEffect, useRef, useState} from "react";
-import {observer} from "mobx-react-lite";
-import {usePathname, useSearchParams} from "next/navigation";
-import {Virtuoso} from "react-virtuoso";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { observer } from "mobx-react-lite";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Virtuoso } from "react-virtuoso";
 
 import ProductListStore from "@store/ProductListStore";
-import {Search} from "@components/index";
-import {ProductRow} from "./components/ProductRow";
-import {InfoProducts} from "./components/InfoProducts";
-import {type FormattedProduct} from "@api/types";
+import { Search } from "@components/index";
+import { ProductRow } from "./components/ProductRow";
+import { InfoProducts } from "./components/InfoProducts";
+import { type FormattedProduct } from "@/app/api/types";
 
 import styles from "./ProductPage.module.scss";
 

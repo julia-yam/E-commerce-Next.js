@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { strapiService } from "@/api/strapi";
+import { strapiService } from "@/app/api/strapi";
 import ProductDetailPageClient from "./ProductDetailPageClient";
 
 export const revalidate = 3600;

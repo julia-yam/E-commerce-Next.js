@@ -4,7 +4,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/navigation";
 import { Card, ProductAction, Text } from "@components/index";
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 
 import styles from "./RelatedItemList.module.scss";
 

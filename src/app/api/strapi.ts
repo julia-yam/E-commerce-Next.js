@@ -8,9 +8,9 @@ import {
   type ProductAttributes,
   type StrapiProductFilters,
   type StrapiResponse,
-} from "./types";
+} from "src/app/api/types";
 
-import {type AdvancedFilters} from "@/shared/components/Search/configs";
+import { type AdvancedFilters } from "@components/Search/configs";
 
 const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_BASE_URL || "";
 const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || "";
