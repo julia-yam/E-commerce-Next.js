@@ -42,7 +42,7 @@ const ProductDetailPageClient = observer(({ id, initialData }: Props) => {
     );
 
     if (!isInCart) {
-      await handleAddToCart(e, product);
+      handleAddToCart(e, product);
     }
     router.push("/cart-page");
   };

@@ -1,11 +1,11 @@
 "use client";
 
-import {useEffect, useState} from "react";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import {observer} from "mobx-react-lite";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { observer } from "mobx-react-lite";
 
 import cartStore from "@store/CartStore";
-import {Button, Text} from "@components/index";
+import { Button, Text } from "@components/index";
 
 import styles from "./CartSummary.module.scss";
 
@@ -21,7 +21,6 @@ const CartSummary = observer(() => {
       if (typeof cartStore.clearCart === "function") {
         cartStore.clearCart();
       }
-
       router.replace(pathname);
     }
   }, [searchParams, router, pathname]);
@@ -59,7 +58,6 @@ const CartSummary = observer(() => {
           name: product.title,
           price: discountedPrice,
           quantity: quantity,
-          image: product.image,
         };
       });
 
@@ -74,10 +72,12 @@ const CartSummary = observer(() => {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        console.error("Stripe error:", data.error);
+        console.error("ЮКасса error:", data.error);
+        alert(`Ошибка оплаты: ${data.error}`);
       }
     } catch (error) {
       console.error("Checkout error:", error);
+      alert("Произошла ошибка при попытке оформить заказ.");
     } finally {
       setIsLoading(false);
     }
@@ -92,14 +92,10 @@ const CartSummary = observer(() => {
       <div className={styles.summaryDetails}>
         {cartStore.items.map(({ product, quantity }) => {
           const discount = product.discountPercent || 0;
-          const hasDiscount = discount > 0;
-
-          const discountedPrice = hasDiscount
-            ? Math.round(product.price * (1 - discount / 100))
-            : product.price;
-
-          const rowOriginalTotal = product.price * quantity;
-          const rowDiscountedTotal = discountedPrice * quantity;
+          const discountedPrice =
+            discount > 0
+              ? Math.round(product.price * (1 - discount / 100))
+              : product.price;
 
           return (
             <div key={product.id} className={styles.summaryRow}>
@@ -111,33 +107,9 @@ const CartSummary = observer(() => {
               >
                 {product.title} {quantity > 1 && `(${quantity})`}
               </Text>
-
-              <div className={styles.priceWrapper}>
-                {hasDiscount ? (
-                  <>
-                    <Text
-                      tag="span"
-                      view="p-14"
-                      color="secondary"
-                      className={styles.priceOld}
-                    >
-                      ${rowOriginalTotal.toFixed(2)}
-                    </Text>
-                    <Text
-                      tag="span"
-                      view="p-14"
-                      color="primary"
-                      className={styles.priceActual}
-                    >
-                      ${rowDiscountedTotal.toFixed(2)}
-                    </Text>
-                  </>
-                ) : (
-                  <Text tag="span" view="p-14" color="primary">
-                    ${rowOriginalTotal.toFixed(2)}
-                  </Text>
-                )}
-              </div>
+              <Text tag="span" view="p-14" color="primary">
+                ${(discountedPrice * quantity).toFixed(2)}
+              </Text>
             </div>
           );
         })}
@@ -150,13 +122,8 @@ const CartSummary = observer(() => {
           <Text tag="span" view="p-16" color="secondary">
             Discount:
           </Text>
-          <Text
-            tag="span"
-            view="p-16"
-            color="secondary"
-            className={styles.savingsAmount}
-          >
-            ${totalSavings.toFixed(2)}
+          <Text tag="span" view="p-16" color="secondary">
+            -${totalSavings.toFixed(2)}
           </Text>
         </div>
       )}
@@ -180,7 +147,7 @@ const CartSummary = observer(() => {
         onClick={handleCheckout}
         disabled={isLoading || cartStore.items.length === 0}
       >
-        {isLoading ? "Redirecting..." : "Place an order"}
+        {isLoading ? "Loading..." : "Place an order"}
       </Button>
     </aside>
   );

@@ -12,5 +12,4 @@ export const ACTION_ICONS_CONFIG = {
   width: 30,
   height: 30,
   color: "primary" as const,
-  href: "/cart-page",
 };

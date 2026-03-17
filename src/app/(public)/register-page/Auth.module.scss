@@ -1,0 +1,40 @@
+@use '@styles/functions' as f;
+@use '@styles/variables' as *;
+
+.auth-container {
+  max-width: f.rem(400);
+  margin: $space-xl auto;
+  padding: $space-s $space-l;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $card-bg;
+  border: 2px solid $line-color;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $space-l;
+  margin-top: $space-l;
+}
+
+.footer {
+  margin-top: $space-l;
+  text-align: center;
+}
+
+.link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.profileInfo {
+  width: 100%;
+  margin-bottom: $space-l;
+
+  p {
+    margin-top: $space-xxs;
+  }
+}

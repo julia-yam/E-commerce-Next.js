@@ -11,12 +11,12 @@ interface CartItemProps {
   item: {
     product: {
       id: string | number;
-      documentId?: string; // Добавлено на всякий случай
+      documentId?: string;
       title: string;
       category: string;
       price: number;
       image: string;
-      discountPercent?: number; // <-- Добавлено для расчета скидки
+      discountPercent?: number;
     };
     quantity: number;
   };
