@@ -1,11 +1,9 @@
-import React from 'react';
-import cn from 'classnames';
+import React from "react";
+import cn from "classnames";
+import { LoaderIcon, type LoaderProps, SIZE_MAP } from "./configs";
+import styles from "./Loader.module.scss";
 
-import { type LoaderProps, SIZE_MAP, LoaderIcon } from './configs';
-
-import styles from './Loader.module.scss';
-
-const Loader: React.FC<LoaderProps> = ({ size = 'l', className }) => {
+const Loader: React.FC<LoaderProps> = ({ size = "l", className }) => {
   const dimension = SIZE_MAP[size];
 
   return (

@@ -1,13 +1,14 @@
 @use '@styles/variables' as *;
-@use '@styles/mixins' as *;
 @use '@styles/functions' as f;
+@use '@styles/mixins' as *;
 
-.cartItem {
+.cart-item {
   display: flex;
-  align-items: center;
-  border-bottom: 2px solid $line-color;
   @include adaptive-gap(24, 12);
   padding-bottom: $space-s;
+  border-bottom: 2px solid $line-color;
+  cursor: pointer;
+  align-items: center;
 
   @include respond-down("mobile") {
     flex-direction: column;
@@ -16,11 +17,9 @@
     border: 2px solid $line-color;
   }
 
-  .image {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    background: $screen--color;
+  &-image {
+    object-fit: cover;
+    border-radius: $border-radius;
     flex-shrink: 0;
 
     @include respond-down("mobile") {
@@ -30,24 +29,34 @@
     }
   }
 
-  .info {
+  &-info {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: $space-xxs;
   }
-}
 
-.controls {
-  display: flex;
-  align-items: center;
-  @include adaptive-gap(24, 12);
+  &-controls {
+    display: flex;
+    align-items: flex-end;
+    @include adaptive-gap(24, 12);
 
-  @include respond-down("mobile") {
-    width: 100%;
-    justify-content: space-between;
-    margin-top: $space-s;
-    padding-top: $space-s;
-    border-top: 2px solid $line-color;
+    @include respond-down("mobile") {
+      width: 100%;
+      justify-content: space-between;
+      margin-top: $space-s;
+      padding-top: $space-s;
+      border-top: 2px solid $line-color;
+    }
+  }
+
+  .price-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .price-old {
+    text-decoration: line-through;
   }
 }
+

@@ -1,6 +1,5 @@
 @use '@styles/variables' as *;
 @use '@styles/mixins' as *;
-@import '@styles/mixins';
 
 .summary {
   flex: 0 0 350px;
@@ -17,14 +16,14 @@
     position: static;
   }
 
-  .summaryDetails {
+  .summary-details {
     margin: $space-s 0;
     display: flex;
     flex-direction: column;
     gap: $space-xxs;
   }
 
-  .summaryRow {
+  .summary-row {
     display: flex;
     justify-content: space-between;
     gap: $space-s;
@@ -43,13 +42,28 @@
     margin-bottom: $space-l;
   }
 
-  .checkoutBtn {
+  .checkout-btn {
     width: 100%;
+  }
+
+  .price-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .price-old {
+    text-decoration: line-through;
+  }
+
+  .savings-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
   }
 }
 
-.emptyCart {
+.empty-cart {
   text-align: center;
-  @include _adaptive-value("padding-top", 60, 120);
-  @include _adaptive-value("padding-bottom", 60, 120);
+  @include adaptive-value("padding-top", 60, 120);
+  @include adaptive-value("padding-bottom", 60, 120);
 }

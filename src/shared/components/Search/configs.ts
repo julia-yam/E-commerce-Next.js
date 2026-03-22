@@ -3,24 +3,38 @@ export type Option = {
   value: string;
 };
 
+export interface AdvancedFilters {
+  priceMin: string;
+  priceMax: string;
+  discountPercent: string;
+  rating: string;
+  isInStock: boolean;
+}
+
 export type SearchProps = {
   className?: string;
   options: Option[];
   selectedOptions: Option[];
-  onFilterChange: (options: Option[]) => void;
+  onFilterChange: (selected: Option[]) => void;
   searchQuery: string;
-  onSearchChange: (value: string) => void;
+  onSearchChange: (query: string) => void;
   totalCount: number;
+
+  advancedFilters?: AdvancedFilters;
+  onAdvancedFilterChange?: <K extends keyof AdvancedFilters>(
+    key: K,
+    value: AdvancedFilters[K],
+  ) => void;
 };
 
 export const TEXTS = {
-  placeholder: 'Search product',
-  button: 'Find now',
-  totalLabel: 'Total products',
-  filterDefault: 'Filter',
+  placeholder: "Search product",
+  button: "Find now",
+  totalLabel: "Total products",
+  filterDefault: "Filter",
 };
 
 export const getDropdownTitle = (selected: Option[]): string => {
   if (selected.length === 0) return TEXTS.filterDefault;
-  return selected.map((option) => option.value).join(', ');
+  return selected.map((option) => option.value).join(", ");
 };

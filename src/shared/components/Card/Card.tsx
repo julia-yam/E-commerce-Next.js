@@ -1,11 +1,8 @@
 import React from "react";
 import cn from "classnames";
 import Image from "next/image";
-
 import { SkeletonBlock, Text } from "@components/index";
-
 import { CARD_TEXT_CONFIG, type CardProps } from "./configs";
-
 import styles from "./Card.module.scss";
 
 const Card: React.FC<CardProps> = ({
@@ -21,7 +18,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const classes = cn(
     styles.card,
-    { [styles["card--clickable"]]: !!onClick && !isLoading },
+    { [styles.cardClickable]: !!onClick && !isLoading },
     className,
   );
 
@@ -87,9 +84,7 @@ const Card: React.FC<CardProps> = ({
 
       <div className={styles.cardFooter}>
         {contentSlot && (
-          <Text {...CARD_TEXT_CONFIG.content} className={styles.cardContent}>
-            {contentSlot}
-          </Text>
+          <Text {...CARD_TEXT_CONFIG.content}>{contentSlot}</Text>
         )}
         {actionSlot && (
           <div className={styles.cardAction} onClick={handleActionClick}>

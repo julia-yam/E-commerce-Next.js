@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ProductPageClient from "./ProductPageClient";
-import { strapiService } from "@/api/strapi";
+import { strapiService } from "@/app/api/strapi";
 
 export const revalidate = 60;
 
@@ -12,7 +12,8 @@ interface PageProps {
 export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const { search } = await searchParams;
+  const resolvedParams = await searchParams;
+  const search = resolvedParams?.search;
   const query = typeof search === "string" ? search : "";
 
   return {

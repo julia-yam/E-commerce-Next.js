@@ -14,7 +14,7 @@
   }
 }
 
-.cardImage {
+.card-image {
   width: 100%;
   max-width: f.rem(600);
   height: auto;
@@ -39,12 +39,12 @@
     @include adaptive-lh(32, 48);
   }
 
-  .actionsBlock {
+  .actions-block {
     display: flex;
     gap: $space-xl;
     align-items: center;
 
-    .actionWrapper {
+    .action-wrapper {
       width: f.rem(180);
       height: f.rem(48);
       flex-shrink: 0;
@@ -59,4 +59,13 @@
       }
     }
   }
+}
+
+.price-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.price-old {
+  text-decoration: line-through;
 }

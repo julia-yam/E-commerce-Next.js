@@ -1,49 +1,49 @@
-$shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+$shadow: var(--shadow);
 
-$brand: #518581;
-$brand-hover: #86aaa7;
-$brand-active: #487773;
+$brand: var(--brand);
+$brand-hover: var(--brand-hover);
+$brand-active: var(--brand-active);
 
-$loader-bg: $brand;
+$loader-bg: var(--loader-bg);
 
-$text-primary: #000000;
-$text-secondary: #afadb5;
-$text-accent: #518581;
+$text-primary: var(--text-primary);
+$text-secondary: var(--text-secondary);
+$text-accent: var(--text-accent);
 
-$button-primary-text: #ffffff;
-$button-primary-text-hover: #ffffff;
-$button-primary-text-disabled: #ffffff;
-$button-primary-text-active: #ffffff;
-$button-primary-bg: $brand;
-$button-primary-bg-hover: $brand-hover;
-$button-primary-bg-disabled: #d9d9d9;
-$button-primary-bg-active: $brand-active;
+$button-primary-text: var(--button-primary-text);
+$button-primary-text-hover: var(--button-primary-text-hover);
+$button-primary-text-disabled: var(--button-primary-text-disabled);
+$button-primary-text-active: var(--button-primary-text-active);
+$button-primary-bg: var(--button-primary-bg);
+$button-primary-bg-hover: var(--button-primary-bg-hover);
+$button-primary-bg-disabled: var(--button-primary-bg-disabled);
+$button-primary-bg-active: var(--button-primary-bg-active);
 
-$card-bg: #ffffff;
-$card-image-bg: #d9d9d9;
+$card-bg: var(--card-bg);
+$card-image-bg: var(--card-image-bg);
 
-$input-text: #000000;
-$input-text-focus: #000000;
-$input-bg: #ffffff;
-$input-placeholder: #afadb5;
-$input-border: #ffffff;
-$input-bg-focus: #ffffff;
-$input-border-focus: $brand;
-$input-bg-disabled: #ffffff;
-$input-border-disabled: #ffffff;
-$input-text-disabled: rgba(0, 0, 0, 0.2);
+$input-text: var(--input-text);
+$input-text-focus: var(--input-text-focus);
+$input-bg: var(--input-bg);
+$input-placeholder: var(--input-placeholder);
+$input-border: var(--input-border);
+$input-bg-focus: var(--input-bg-focus);
+$input-border-focus: var(--input-border-focus);
+$input-bg-disabled: var(--input-bg-disabled);
+$input-border-disabled: var(--input-border-disabled);
+$input-text-disabled: var(--input-text-disabled);
 
-$dropdown-options-bg: #ffffff;
+$dropdown-options-bg: var(--dropdown-options-bg);
 
-$checkbox-bg: #ffffff;
-$checkbox-border: #ffffff;
-$checkbox-border-hover: $brand;
-$checkbox-bg-disabled: rgba(255, 255, 255, 0.5);
-$checkbox-border-disabled: rgba(255, 255, 255, 0);
-$checkbox-check-disabled: rgba(0, 0, 0, 0.2);
+$checkbox-bg: var(--checkbox-bg);
+$checkbox-border: var(--checkbox-border);
+$checkbox-border-hover: var(--checkbox-border-hover);
+$checkbox-bg-disabled: var(--checkbox-bg-disabled);
+$checkbox-border-disabled: var(--checkbox-border-disabled);
+$checkbox-check-disabled: var(--checkbox-check-disabled);
 
-$screen--color: #FFFFFF;
-$line-color: #F3F3F3;
+$screen--color: var(--screen-color);
+$line-color: var(--line-color);
 
 $space-xl: 48px;
 $space-l: 32px;

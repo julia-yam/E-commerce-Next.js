@@ -1,9 +1,7 @@
-import * as React from 'react';
-import cn from 'classnames';
-
-import { type IconProps, ICON_DEFAULTS } from './configs';
-
-import styles from './Icon.module.scss';
+import * as React from "react";
+import cn from "classnames";
+import { ICON_DEFAULTS, type IconProps } from "./configs";
+import styles from "./Icon.module.scss";
 
 const Icon: React.FC<React.PropsWithChildren<IconProps>> = ({
   children,
@@ -13,7 +11,15 @@ const Icon: React.FC<React.PropsWithChildren<IconProps>> = ({
   className,
   ...props
 }) => {
-  const classes = cn(styles.icon, color && styles[color], className);
+  const colorKey = color
+    ? `icon${color.charAt(0).toUpperCase() + color.slice(1)}`
+    : null;
+
+  const classes = cn(
+    styles.icon,
+    colorKey && styles[colorKey as keyof typeof styles],
+    className,
+  );
 
   return (
     <svg

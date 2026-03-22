@@ -4,10 +4,9 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/navigation";
 
-import { Card, ProductAction } from "@components/index";
-
+import { Card, ProductAction, Text } from "@components/index";
 import { type ProductRowProps, ROUTES } from "./configs";
-import { type FormattedProduct } from "@/api/types";
+import { type FormattedProduct } from "@/app/api/types";
 
 import styles from "./ProductRow.module.scss";
 
@@ -36,6 +35,36 @@ const ProductRow = observer(({ index, store }: ProductRowProps) => {
       ) : (
         <div className={styles.gridRow}>
           {rowItems.map((product: FormattedProduct) => {
+            const discount = product.discountPercent || 0;
+            const hasDiscount = discount > 0;
+
+            const discountedPrice = hasDiscount
+              ? Math.round(product.price * (1 - discount / 100))
+              : product.price;
+
+            const priceElement = hasDiscount ? (
+              <span className={styles.priceWrapper}>
+                <Text
+                  tag="span"
+                  view="p-14"
+                  color="secondary"
+                  className={styles.priceOld}
+                >
+                  ${product.price}
+                </Text>
+                <Text
+                  tag="span"
+                  view="p-20"
+                  color="primary"
+                  className={styles.priceActual}
+                >
+                  ${discountedPrice}
+                </Text>
+              </span>
+            ) : (
+              <Text tag="span">${product.price}</Text>
+            );
+
             return (
               <Card
                 key={product.documentId}
@@ -43,7 +72,7 @@ const ProductRow = observer(({ index, store }: ProductRowProps) => {
                 title={product.title}
                 subtitle={product.description}
                 captionSlot={product.category}
-                contentSlot={`$${product.price}`}
+                contentSlot={priceElement}
                 onClick={() => handleCardClick(product.documentId)}
                 actionSlot={
                   <div onClick={(e) => e.stopPropagation()}>

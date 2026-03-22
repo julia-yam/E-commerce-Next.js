@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/navigation";
 
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 import cartStore from "@store/CartStore";
 import ProductDetailsStore from "@store/ProductDetailsStore";
 import { BackButton, Button, Loader, Text } from "@components/index";
-import { useCartActions } from "@hooks/useCartActions";
+import { useCartActions } from "@store/hooks/useCartActions";
 
 import { RelatedItemList } from "./components/RelatedItemList";
 import { ProductMainInfo } from "./components/ProductMainInfo";
@@ -42,7 +42,7 @@ const ProductDetailPageClient = observer(({ id, initialData }: Props) => {
     );
 
     if (!isInCart) {
-      await handleAddToCart(e, product);
+      handleAddToCart(e, product);
     }
     router.push("/cart-page");
   };
@@ -59,7 +59,9 @@ const ProductDetailPageClient = observer(({ id, initialData }: Props) => {
     return (
       <div className={styles.productDetail}>
         <div className={styles.container}>
-          <Text view="title">Product not found</Text>
+          <Text view="title" color="primary">
+            Product not found
+          </Text>
           <Button onClick={handleBackClick}>Back</Button>
         </div>
       </div>

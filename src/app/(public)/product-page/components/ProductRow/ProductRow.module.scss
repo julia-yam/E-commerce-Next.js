@@ -2,12 +2,12 @@
 @use '@styles/mixins' as *;
 @use '@styles/functions' as f;
 
-.rowWrapper {
+.row-wrapper {
   display: flex;
   box-sizing: border-box;
   padding-bottom: f.rem(24);
 
-  .gridRow {
+  .grid-row {
     display: grid;
     width: 100%;
     height: 100%;
@@ -25,4 +25,13 @@
       gap: f.rem(12);
     }
   }
+}
+
+.price-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.price-old {
+  text-decoration: line-through;
 }

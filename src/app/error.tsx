@@ -1,7 +1,7 @@
 "use client";
 
-import {useEffect} from "react";
-import {Button, Text} from "@components/index";
+import { useEffect } from "react";
+import { Button, Text } from "@components/index";
 import styles from "./error.module.scss";
 
 export default function Error({
@@ -17,7 +17,7 @@ export default function Error({
 
   return (
     <div className={styles.errorContainer}>
-      <Text view="title" tag="h2">
+      <Text view="title" tag="h2" color="primary">
         Something went wrong!
       </Text>
       <Text view="p-16" color="secondary">

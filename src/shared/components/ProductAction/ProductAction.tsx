@@ -5,8 +5,8 @@ import { observer } from "mobx-react-lite";
 import cn from "classnames";
 import cartStore from "@store/CartStore";
 import { Button, QuantityControl } from "@components/index";
-import { useCartActions } from "@hooks/useCartActions";
-import { type FormattedProduct } from "@api/types";
+import { useCartActions } from "@store/hooks/useCartActions";
+import { type FormattedProduct } from "@/app/api/types";
 import { type ButtonVariant } from "@components/Button/configs";
 
 import styles from "./ProductAction.module.scss";

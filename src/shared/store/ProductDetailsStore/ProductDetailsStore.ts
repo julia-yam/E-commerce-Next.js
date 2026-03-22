@@ -1,8 +1,8 @@
 import type { IReactionDisposer } from "mobx";
 import { action, computed, makeObservable, observable, reaction } from "mobx";
 
-import { strapiService } from "@api/strapi";
-import { type FormattedProduct } from "@api/types";
+import { strapiService } from "@/app/api/strapi";
+import { type FormattedProduct } from "@/app/api/types";
 
 interface ILocalStore {
   destroy(): void;

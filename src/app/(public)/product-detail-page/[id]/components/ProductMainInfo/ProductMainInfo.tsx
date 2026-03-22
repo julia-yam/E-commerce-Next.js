@@ -1,6 +1,6 @@
 import React from "react";
 import NextImage from "next/image";
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 import { Button, ProductAction, Text } from "@components/index";
 import styles from "./ProductMainInfo.module.scss";
 
@@ -13,6 +13,13 @@ export const ProductMainInfo = ({
   product,
   onBuyNow,
 }: ProductMainInfoProps) => {
+  const discount = product.discountPercent || 0;
+  const hasDiscount = discount > 0;
+
+  const discountedPrice = hasDiscount
+    ? Math.round(product.price * (1 - discount / 100))
+    : product.price;
+
   return (
     <section className={styles.product}>
       <div className={styles.img}>
@@ -38,6 +45,7 @@ export const ProductMainInfo = ({
             maxLines={2}
             tag="h1"
             view="title"
+            color="primary"
           >
             {product.title}
           </Text>
@@ -47,9 +55,36 @@ export const ProductMainInfo = ({
         </div>
 
         <div className={styles.priceWrapper}>
-          <Text weight="bold" className={styles.price} view="p-20">
-            ${product.price}
-          </Text>
+          {hasDiscount ? (
+            <>
+              <Text
+                tag="span"
+                view="p-20"
+                color="secondary"
+                className={styles.priceOld}
+              >
+                ${product.price}
+              </Text>
+              <Text
+                tag="span"
+                weight="bold"
+                className={styles.priceActual}
+                view="title"
+                color="primary"
+              >
+                ${discountedPrice}
+              </Text>
+            </>
+          ) : (
+            <Text
+              weight="bold"
+              className={styles.price}
+              view="title"
+              color="primary"
+            >
+              ${product.price}
+            </Text>
+          )}
         </div>
 
         <div className={styles.actionsBlock}>

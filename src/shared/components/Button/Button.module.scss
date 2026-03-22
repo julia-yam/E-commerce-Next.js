@@ -12,44 +12,44 @@
   cursor: pointer;
   border: 1px solid transparent;
 
-  &.primary {
+  &-primary {
     color: $button-primary-text;
     background-color: $button-primary-bg;
     border: none;
 
-    &:hover:not(.disabled) {
+    &:hover:not(.button-disabled) {
       background-color: $button-primary-bg-hover;
     }
 
-    &.disabled {
+    &-disabled {
       background-color: $button-primary-bg-disabled;
-    }
-
-    .loader {
-      color: $button-primary-text;
     }
   }
 
-  &.transparent {
+  &-transparent {
     background-color: transparent;
     color: $text-primary;
     border: 1px solid $text-secondary;
 
-    &:hover:not(.disabled) {
+    &:hover:not(.button-disabled) {
       background-color: $line-color;
     }
 
-    &.disabled {
+    &-disabled {
       border-color: $button-primary-bg-disabled;
       color: $button-primary-bg-disabled;
     }
   }
 
-  &.disabled {
+  &-disabled {
     cursor: not-allowed;
   }
 
-  &.loading {
+  &-loading {
     pointer-events: none;
+  }
+
+  &-loader {
+    color: inherit;
   }
 }

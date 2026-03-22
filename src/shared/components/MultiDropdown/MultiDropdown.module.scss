@@ -1,44 +1,82 @@
 @use '@styles/variables' as *;
 @use '@styles/mixins' as *;
 
-.multiDropdown {
+.multi-dropdown {
   position: relative;
   width: 100%;
 
-  &Options {
+  &-options {
     background-color: $dropdown-options-bg;
     position: absolute;
-    z-index: 10;
-    margin-top: $space-xxs;
+    z-index: 100;
+    top: calc(100% + #{$space-xxs});
+    right: 0;
+
     width: 100%;
+    min-width: 360px;
+
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+
+    scrollbar-gutter: stable;
+
     box-shadow: $shadow;
-    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
   }
 
-  &Item {
+  .categories-accordion {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $space-m;
+    cursor: pointer;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $space-xs;
+  }
+
+  .no-results {
+    padding: $space-s $space-m;
+    color: $text-secondary;
+  }
+
+  &-item {
     display: flex;
     align-items: center;
-    padding: $space-s $space-xs;
+    padding: $space-s $space-m;
     cursor: pointer;
 
     &:hover {
       color: $text-secondary;
     }
 
-    &Selected {
+    &-selected {
       &,
       &:hover {
         color: $brand;
       }
     }
   }
+
+  .extra-filters {
+    padding: $space-s $space-m;
+    background-color: $dropdown-options-bg;
+  }
 }
 
-.viewP16 {
+.view-p16 {
   @include adaptive-font(14, 16);
   @include adaptive-lh(18, 20);
 }
 
-.weightNormal {
-  font-weight: 400;
-}

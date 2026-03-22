@@ -26,7 +26,8 @@
       "@store/*": ["./src/shared/store/*"],
       "@api/*": ["./src/api/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@providers/*": ["./src/providers/*"]
+      "@providers/*": ["./src/providers/*"],
+      "@services/*": ["./src/services/*"]
     }
   },
   "include": [

@@ -1,5 +1,17 @@
 import { type Option } from "@components/Search/configs";
 
+export interface StrapiProductFilters {
+  title?: { $containsi: string };
+  productCategory?: { documentId: { $in: string[] } };
+  price?: {
+    $gte?: number;
+    $lte?: number;
+  };
+  discountPercent?: { $gte: number };
+  rating?: { $gte: number };
+  isInStock?: { $eq: boolean };
+}
+
 export interface FormattedProduct {
   id: number;
   documentId: string;
@@ -9,6 +21,7 @@ export interface FormattedProduct {
   category: string;
   description: string;
   isInStock: boolean;
+  discountPercent?: number;
 }
 
 export interface PagedResponse<T> {
@@ -39,6 +52,7 @@ export interface ProductAttributes {
   isInStock: boolean;
   images: unknown;
   productCategory: unknown;
+  discountPercent?: number;
 }
 
 export { type Option };

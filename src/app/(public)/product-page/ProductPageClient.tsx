@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Virtuoso } from "react-virtuoso";
@@ -9,7 +9,7 @@ import ProductListStore from "@store/ProductListStore";
 import { Search } from "@components/index";
 import { ProductRow } from "./components/ProductRow";
 import { InfoProducts } from "./components/InfoProducts";
-import { type FormattedProduct } from "@api/types";
+import { type FormattedProduct } from "@/app/api/types";
 
 import styles from "./ProductPage.module.scss";
 
@@ -32,6 +32,7 @@ const ProductPageClient = observer(
     const pathname = usePathname();
 
     const [store] = useState(() => new ProductListStore());
+    const isInitialized = useRef(false);
 
     const isInitialLoading =
       store.isLoading && (store.products?.length || 0) === 0;
@@ -64,20 +65,30 @@ const ProductPageClient = observer(
     }, [store]);
 
     useEffect(() => {
-      const categories = initialCategories.length ? initialCategories : [];
+      if (!isInitialized.current) {
+        void store.init(initialSearch, initialCategories, initialData);
+        isInitialized.current = true;
+      }
 
-      void store.init(initialSearch, categories, initialData);
-
-      return () => store.destroy();
-    }, [store, initialSearch, initialCategories, initialData]);
+      return () => {
+        store.destroy();
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
+      if (!isInitialized.current) return;
+
       const newParams = new URLSearchParams();
-      if (store.filters.searchQuery)
+
+      if (store.filters.searchQuery) {
         newParams.set("search", store.filters.searchQuery);
+      }
+
       if (categoryKeys) {
         categoryKeys
           .split(",")
+          .filter(Boolean)
           .forEach((key) => newParams.append("category", key));
       }
 
@@ -103,6 +114,8 @@ const ProductPageClient = observer(
             searchQuery={store.filters.searchQuery}
             onSearchChange={(value) => store.filters.setSearchQuery(value)}
             totalCount={store.total}
+            advancedFilters={store.filters.advancedFilters}
+            onAdvancedFilterChange={store.filters.setAdvancedFilter}
             className={styles.search}
           />
           <div className={styles.listWrapper}>

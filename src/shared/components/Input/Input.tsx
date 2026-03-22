@@ -1,18 +1,20 @@
-import React, { useCallback } from 'react';
-
-import { type InputProps, getInputWrapperClasses } from './configs';
-
-import styles from './Input.module.scss';
+import React, { useCallback } from "react";
+import { getInputWrapperClasses, type InputProps } from "./configs";
+import styles from "./Input.module.scss";
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ value, onChange, afterSlot, className = '', ...rest }, ref) => {
-    const wrapperClasses = getInputWrapperClasses(styles, className, rest.disabled);
+  ({ value, onChange, afterSlot, className = "", ...rest }, ref) => {
+    const wrapperClasses = getInputWrapperClasses(
+      styles,
+      className,
+      rest.disabled,
+    );
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange(e.target.value);
       },
-      [onChange]
+      [onChange],
     );
 
     return (
@@ -25,12 +27,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           value={value}
           onChange={handleChange}
         />
-        {afterSlot && <div className={styles.inputWrapperAfter}>{afterSlot}</div>}
+        {afterSlot && (
+          <div className={styles.inputWrapperAfter}>{afterSlot}</div>
+        )}
       </label>
     );
-  }
+  },
 );
 
-Input.displayName = 'Input';
+Input.displayName = "Input";
 
 export default Input;

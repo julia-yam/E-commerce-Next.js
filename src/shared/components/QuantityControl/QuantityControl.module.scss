@@ -16,7 +16,7 @@
   background-color: transparent;
   box-sizing: border-box;
 
-  .controlBtn {
+  &-control-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +33,7 @@
     }
   }
 
-  .value {
+  &-value {
     flex: 1;
     display: flex;
     align-items: center;
